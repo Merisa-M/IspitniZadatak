@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Uredi";
+}
+@model RS1_2019_12_16.ViewModels.PopravniIspitUrediVM
+<h2>Uredjivanje popravnog ispita</h2>
+
+<form>
+    @{ int i = 0;}
+    @foreach (var clan in Model.Komisija)
+    {
+        <div class="form-group">
+            <label class="control-label" asp-for="@Model.Komisija">@{++i;} @i. Clan komisije:></label>
+            <input asp-for="Skola" value="@clan" class="form-control" readonly />
+        </div>
+    }
+    <div class="form-group">
+        <label asp-for="Datum" class="control-label"> Datum:</label>
+        <input asp-for="Datum" value="@Model.Datum" class="form-group" type="date" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="Skola" class="control-label"> Skola:</label>
+        <input asp-for="Skola" value="@Model.Skola" class="form-group" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="SkolskaGodina" class="control-label"> Skolska godina:</label>
+        <input asp-for="SkolskaGodina" value="@Model.SkolskaGodina" class="form-group" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="Predmet" class="control-label"> Datum:</label>
+        <input asp-for="Predmet" value="@Model.Predmet" class="form-group" readonly />
+    </div>
+
+
+</form>
+<div id="AjaxDiv">
+
+</div>
+<a class="btn btn-danger" asp-controller="PopravniIspit" asp-action="DodajUcesnika" asp-route-id="@Model.PopravniIspitID">Dodaj učesnika</a>
+<a class="btn btn-danger" asp-controller="PopravniIspit" asp-action="Dodaj" asp-route-skolaid="@Model.SkolaID" asp-route-sgid="@Model.SkolskaGodinaID"
+       asp-route-pid="@Model.PredmetID">Dodaj</a>
+<script>
+    $.get("/AjaxStavke/Index/@Model.PopravniIspitID", function (response, status) {
+        $("#AjaxDiv").html(response);
+    })
+</script>

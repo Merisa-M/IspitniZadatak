@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Dodaj";
+}
+@model RS1_2019_12_16.ViewModels.PopravniIspitDodajVM
+<h2>Dodavanje popravnig ispita</h2>
+<form asp-controller="PopravniIspit" asp-action="Snimi">
+    <input asp-for="SkolaID" value="@Model.SkolaID" hidden />
+    <input asp-for="PredmetID" value="@Model.PredmetID" hidden />
+    <input asp-for="SkolskaGodinaID" value="@Model.SkolskaGodinaID" hidden />
+
+    <div class="form-group">
+        <label class="control-label" asp-for="ClanKomisije1"> 1. Član komisije </label>
+        <select class="form-control" asp-for="ClanKomisije1" asp-items="@Model.Nastavnici"></select>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="ClanKomisije2"> 2. Član komisije </label>
+        <select class="form-control" asp-for="ClanKomisije2" asp-items="@Model.Nastavnici"></select>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="ClanKomisije3"> 3. Član komisije </label>
+        <select class="form-control" asp-for="ClanKomisije3" asp-items="@Model.Nastavnici"></select>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="Datum"> Datum ispita: </label>
+        <input asp-for="Datum" type="datetime" value="@Model.Datum" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="Skola"> Škola: </label>
+        <input asp-for="Skola" value="@Model.Skola" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="SkolskaGodina"> Školska godina: </label>
+        <input asp-for="SkolskaGodina" value="@Model.SkolskaGodina" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="Predmet"> Predmet: </label>
+        <input asp-for="Predmet" value="@Model.Predmet" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <input value="Dodaj" type="submit" class="btn btn-danger"  />
+    </div>
+</form>

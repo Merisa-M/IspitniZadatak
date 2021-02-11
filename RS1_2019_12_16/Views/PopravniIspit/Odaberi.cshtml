@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Odaberi";
+}
+@model RS1_2019_12_16.ViewModels.PopravniIspitOdaberiVM
+<div>
+    Popravni ispit za @Model.Predmet - @Model.Skola - @Model.SkolskaGodina
+
+
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Datum popravnog ispita</th>
+            <th>Nastavnik</th>
+            <th>Broj učesnika na popravnom ispitu</th>
+            <th>Broj učesnika koji su polozili popravni ispit(bodovi veći od 50)</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+<tbody>
+    @foreach (var x in Model.redovi)
+    {
+    <tr>
+        <td>@x.DatumPopravnogIsita </td>
+        <td>@x.Nastavnik </td>
+        <td>@x.BrojUcenikaNaPopravnom </td>
+        <td>@x.BrojUcenikaKojiSuPoloziliNaPopravnom</td>
+        <td>
+            <a asp-controller="PopravniIspit" asp-action="Uredi" asp-route-id="@x.PopravniIspitID">Uredi</a>
+        </td>
+
+    </tr>
+    
+    
+    }
+</tbody>
+</table>
+<div>
+    <a asp-controller="PopravniIspit" asp-route-skolaid="@Model.SkolaID" asp-route-sgid="@Model.SkolskaGodinaID"
+       asp-route-pid="@Model.PredmetID" asp-action="Dodaj" class="btn btn-danger">Snimi</a>
+</div>
